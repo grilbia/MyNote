@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrainNote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="min-h-screen flex ">
+    <div class="flex flex-col max-w-sm w-full bg-indigo-300 ">
+        <div class="m-4">MyNote</div>
+        <div class="flex flex-col justify-center items-center gap-y-3 p-3" id="noteContainer">
+        </div>
+    </div>
+    <div class="flex flex-col min-w-lg w-full bg-pink-300 ">
+        <div class="text-lg m-4">Create a note</div>
+        <div class="mx-4">
+            <textarea name="noteArea" id="noteArea" class="w-full rounded-lg resize-none outline-none p-3 bg-white"
+                rows="12"></textarea>
+        </div>
+
+        <div class="flex self-end gap-4 px-4 ">
+            <div class="bg-blue-400 rounded-md text-white px-4 py-2 w-32 mt-4 text-center" id="createBtn">
+                Create
+            </div>
+            <div class="bg-white rounded-md  px-4 py-2 w-32 mt-4  text-center" id="clearBtn">
+                Clear
+            </div>
+        </div>
+</body>
+<script type="module" src="index.js"></script>
+</html>
