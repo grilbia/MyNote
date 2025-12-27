@@ -1,9 +1,10 @@
-import express from 'express';
+﻿import express from 'express';
 import fs from 'fs/promises';
 import path from 'path';
 import url from 'url';
 
-const PORT = process.env.PORT || 3000; // Default to 3000 if env var not set
+const PORT = process.env.PORT ? Number(process.env.PORT) : 3000; // Default to 3000 if env var not set
+const HOST = process.env.HOST || '0.0.0.0';
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -67,8 +68,12 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal Server Error' });
 });
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, HOST, () => {
   const addr = server.address();
-  const port = typeof addr === 'string' ? addr : addr.port;
-  console.log(`Server listening on http://localhost:${port}`);
+  let host = 'localhost';
+  let port = typeof addr === 'string' ? addr : addr.port;
+  if (addr && typeof addr === 'object') {
+    host = (addr.address === '::' || addr.address === '0.0.0.0') ? 'localhost' : addr.address;
+  }
+  console.log(`Server listening on http://${host}:${port}`);
 });
